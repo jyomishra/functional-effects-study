@@ -56,6 +56,14 @@ object ZIOModel {
     def attempt[A](code: => A): ZIO[Any, Throwable, A] = ???
 
     def environment[R]: ZIO[R, Nothing, ZEnvironment[R]] = ???
+    
+    def zipWith[R, E, A, B, C](self: ZIO[R, E, A], that: ZIO[R, E, B])(f: (A, B) => C): ZIO[R, E, C] = ???
+    
+    def collectAll[R, E, A](in: Seq[ZIO[R, E, A]]): ZIO[R, E, Seq[A]] = ???
+    
+    def foreach[R, E, A, B](in: Seq[A])(f: A => ZIO[R, E, B]): ZIO[R, E, Seq[B]] = ???
+    
+    def eitherToZio[E, A](e: Either[E, A]): ZIO[Any, E, A] = ???
   }
 
   /**
